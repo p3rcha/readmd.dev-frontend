@@ -1,0 +1,50 @@
+{
+  "common": {
+    "welcome": "¡Bienvenido a nuestra aplicación!",
+    "description": "Este es un ejemplo multilingüe.",
+    "logout": "Cerrar sesión",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "name": "Nombre",
+    "nameOptional": "Nombre (opcional)",
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito"
+  },
+  "auth": {
+    "login": "Iniciar sesión",
+    "register": "Registrarse",
+    "loginTitle": "Iniciar sesión",
+    "registerTitle": "Registrarse",
+    "loginFailed": "Error al iniciar sesión",
+    "registrationFailed": "Error en el registro",
+    "passwordMinLength": "La contraseña debe tener al menos 6 caracteres",
+    "noAccount": "¿No tienes una cuenta?",
+    "hasAccount": "¿Ya tienes una cuenta?",
+    "registerLink": "Registrarse",
+    "loginLink": "Iniciar sesión"
+  },
+  "files": {
+    "fileUpload": "Subir archivo",
+    "pasteContent": "Pegar contenido",
+    "dragDrop": "Arrastra y suelta un archivo markdown aquí",
+    "clickToSelect": "o haz clic para seleccionar un archivo",
+    "fileName": "Nombre del archivo",
+    "pastePlaceholder": "Pega tu contenido markdown aquí...",
+    "visibility": "Visibilidad:",
+    "private": "Privado",
+    "unlisted": "No listado",
+    "public": "Público",
+    "shareNow": "Compartir ahora",
+    "uploading": "Subiendo...",
+    "uploadFailed": "Error al subir",
+    "onlyMdFiles": "Solo se permiten archivos .md",
+    "fileSizeLimit": "El tamaño del archivo debe ser menor a 5MB",
+    "enterContent": "Por favor ingresa algún contenido"
+  },
+  "theme": {
+    "toggleDark": "Activar modo oscuro",
+    "toggleLight": "Activar modo claro"
+  }
+}
+
