@@ -1,18 +1,23 @@
 # Dependencies
 node_modules/
-*/node_modules/
 
 # Build outputs
 dist/
-*/dist/
 build/
-*/build/
 
 # Environment variables
 .env
 .env.local
 .env.*.local
-.env
+.env.production
+.env.development
+
+# Vite
+*.local
+.vite/
+
+# TypeScript
+*.tsbuildinfo
 
 # Logs
 logs/
@@ -22,15 +27,22 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-
 # IDE
 .vscode/
+!.vscode/extensions.json
 .idea/
 *.swp
 *.swo
 *~
-.DS_Store
 
 # OS
+.DS_Store
 Thumbs.db
 
+# Testing
+coverage/
+.nyc_output/
+
+# Misc
+*.pem
+.cache/
