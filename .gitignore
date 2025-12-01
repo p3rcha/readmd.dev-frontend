@@ -12,8 +12,7 @@ build/
 .env
 .env.local
 .env.*.local
-backend/.env
-frontend/.env
+.env
 
 # Logs
 logs/
@@ -23,14 +22,6 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# Database
-*.db
-*.db-journal
-backend/dev.db
-backend/dev.db-journal
-
-# Prisma
-backend/prisma/migrations/
 
 # IDE
 .vscode/
