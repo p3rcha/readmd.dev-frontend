@@ -1,8 +1,14 @@
 import { useMemo, useRef, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
+import remarkEmoji from 'remark-emoji';
+import rehypeRaw from 'rehype-raw';
+import rehypeKatex from 'rehype-katex';
 import type { Components } from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { MermaidDiagram } from './MermaidDiagram';
+import 'katex/dist/katex.min.css';
 
 // Custom theme matching the app's glassmorphic violet style
 const customCodeTheme: { [key: string]: React.CSSProperties } = {
@@ -395,6 +401,11 @@ export function MarkdownViewer({ content, scrollContainerRef }: MarkdownViewerPr
         );
       }
       
+      // Handle Mermaid diagrams
+      if (language === 'mermaid') {
+        return <MermaidDiagram chart={codeString} />;
+      }
+      
       return (
         <SyntaxHighlighter
           style={customCodeTheme}
@@ -412,7 +423,11 @@ export function MarkdownViewer({ content, scrollContainerRef }: MarkdownViewerPr
 
   return (
     <div className="markdown-content">
-      <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
+      <ReactMarkdown 
+        remarkPlugins={[remarkGfm, remarkMath, remarkEmoji]} 
+        rehypePlugins={[rehypeRaw, rehypeKatex]}
+        components={components}
+      >
         {content}
       </ReactMarkdown>
     </div>

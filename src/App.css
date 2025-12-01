@@ -282,3 +282,211 @@
   opacity: 0;
   transition: opacity 0.2s ease;
 }
+
+/* ============================================
+   KaTeX Math Styles
+   ============================================ */
+.markdown-content .katex {
+  font-size: 1.1em;
+}
+
+.markdown-content .katex-display {
+  margin: 1.5em 0;
+  padding: 1em;
+  background: var(--bg-tertiary);
+  border-radius: 12px;
+  border: 1px solid var(--border-primary);
+  overflow-x: auto;
+}
+
+.markdown-content .katex-display > .katex {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* Override KaTeX colors for dark theme */
+.dark .markdown-content .katex {
+  color: var(--text-primary);
+}
+
+.dark .markdown-content .katex .mord,
+.dark .markdown-content .katex .mbin,
+.dark .markdown-content .katex .mrel,
+.dark .markdown-content .katex .mopen,
+.dark .markdown-content .katex .mclose,
+.dark .markdown-content .katex .mpunct,
+.dark .markdown-content .katex .minner {
+  color: var(--text-primary);
+}
+
+/* ============================================
+   Mermaid Diagram Styles
+   ============================================ */
+.markdown-content .mermaid-container {
+  margin: 1.5em 0;
+}
+
+/* Subscript and Superscript styling */
+.markdown-content sub,
+.markdown-content sup {
+  font-size: 0.75em;
+  color: var(--color-violet-400);
+}
+
+.markdown-content sub {
+  vertical-align: sub;
+}
+
+.markdown-content sup {
+  vertical-align: super;
+}
+
+/* Mark/Highlight styling */
+.markdown-content mark {
+  background: linear-gradient(135deg, var(--color-violet-500) 0%, var(--color-fuchsia-500) 100%);
+  color: white;
+  padding: 0.1em 0.3em;
+  border-radius: 4px;
+}
+
+/* Abbreviations */
+.markdown-content abbr {
+  text-decoration: underline dotted var(--color-violet-400);
+  cursor: help;
+}
+
+/* Definition lists */
+.markdown-content dl {
+  margin-bottom: 1.5em;
+}
+
+.markdown-content dt {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: 1em;
+}
+
+.markdown-content dd {
+  margin-left: 1.5em;
+  color: var(--text-secondary);
+}
+
+/* Keyboard input */
+.markdown-content kbd {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-primary);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  padding: 0.1em 0.4em;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85em;
+  color: var(--text-primary);
+}
+
+/* Sample output */
+.markdown-content samp {
+  background: var(--bg-tertiary);
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9em;
+  color: var(--color-fuchsia-400);
+}
+
+/* Variable */
+.markdown-content var {
+  font-style: italic;
+  color: var(--color-violet-400);
+}
+
+/* Deleted/Inserted text */
+.markdown-content del {
+  color: var(--text-tertiary);
+  text-decoration: line-through;
+}
+
+.markdown-content ins {
+  color: var(--color-violet-400);
+  text-decoration: underline;
+}
+
+/* Footnotes */
+.markdown-content .footnotes {
+  margin-top: 2em;
+  padding-top: 1em;
+  border-top: 1px solid var(--border-primary);
+  font-size: 0.9em;
+}
+
+.markdown-content .footnotes ol {
+  padding-left: 1.5em;
+}
+
+.markdown-content .footnote-ref {
+  font-size: 0.75em;
+  vertical-align: super;
+  color: var(--color-violet-500);
+}
+
+.markdown-content .footnote-backref {
+  color: var(--color-violet-500);
+  text-decoration: none;
+}
+
+/* Task lists (checkboxes) */
+.markdown-content input[type="checkbox"] {
+  appearance: none;
+  width: 1.1em;
+  height: 1.1em;
+  border: 2px solid var(--color-violet-500);
+  border-radius: 4px;
+  vertical-align: middle;
+  margin-right: 0.5em;
+  cursor: pointer;
+  position: relative;
+}
+
+.markdown-content input[type="checkbox"]:checked {
+  background: var(--color-violet-500);
+}
+
+.markdown-content input[type="checkbox"]:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 0.75em;
+  font-weight: bold;
+}
+
+/* Details/Summary */
+.markdown-content details {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-primary);
+  border-radius: 8px;
+  padding: 0.5em 1em;
+  margin: 1em 0;
+}
+
+.markdown-content details[open] {
+  padding-bottom: 1em;
+}
+
+.markdown-content summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--text-primary);
+  padding: 0.5em 0;
+}
+
+.markdown-content summary:hover {
+  color: var(--color-violet-500);
+}
+
+.markdown-content details[open] summary {
+  margin-bottom: 0.5em;
+  border-bottom: 1px solid var(--border-primary);
+}
