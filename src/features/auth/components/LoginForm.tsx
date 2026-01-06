@@ -102,19 +102,6 @@ export function LoginForm() {
           </Button>
         </form>
 
-        {/* Footer */}
-        <div className="mt-8 text-center">
-          <p className="text-sm text-[var(--text-tertiary)]">
-          Don't have an account?{' '}
-            <Link 
-              to="/register" 
-              className="text-violet-400 hover:text-violet-300 font-medium transition-colors"
-            >
-              Create one
-          </Link>
-        </p>
-    </div>
-
         {/* Decorative element */}
         <div className="absolute -top-px left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-violet-500 to-transparent" />
       </GlassCard>

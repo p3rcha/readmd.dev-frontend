@@ -61,6 +61,33 @@ export function Navbar() {
                 </motion.div>
               </Link>
 
+              {/* Admin Link - Only for admins */}
+              {user.isAdmin && (
+                <Link to="/admin/users">
+                  <motion.div
+                    className={`
+                      relative px-4 py-2 rounded-xl text-sm font-medium
+                      transition-colors duration-200
+                      ${isActive('/admin/users')
+                        ? 'text-white'
+                        : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                      }
+                    `}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    {isActive('/admin/users') && (
+                      <motion.div
+                        layoutId="activeNav"
+                        className="absolute inset-0 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-xl"
+                        transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                      />
+                    )}
+                    <span className="relative z-10">Users</span>
+                  </motion.div>
+                </Link>
+              )}
+
               {/* User email */}
               <span className="text-sm text-[var(--text-muted)] hidden sm:block">
                 {user.email}
@@ -85,15 +112,8 @@ export function Navbar() {
 
               {/* Login */}
               <Link to="/login">
-                <Button variant="ghost" size="sm">
-                  Login
-                </Button>
-              </Link>
-
-              {/* Sign Up */}
-              <Link to="/register">
                 <Button variant="primary" size="sm">
-                  Sign Up
+                  Login
                 </Button>
               </Link>
             </>

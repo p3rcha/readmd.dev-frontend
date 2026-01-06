@@ -51,7 +51,7 @@ export function FilesDashboardPage() {
     if (isAuthenticated) {
       setShowLoginPrompt(false);
     }
-  }, []);
+  }, [isAuthenticated]);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -213,9 +213,9 @@ export function FilesDashboardPage() {
                 </svg>
               </Button>
               {!isAuthenticated && (
-                <Link to="/register">
+                <Link to="/login">
                   <Button variant="secondary" size="lg">
-                    Create free account
+                    Sign in
                   </Button>
                 </Link>
               )}
@@ -265,14 +265,11 @@ export function FilesDashboardPage() {
                     </p>
                   </div>
                   <p className="text-[var(--text-secondary)] mb-6">
-                    Login or register to claim ownership and manage your file.
+                    Login to claim ownership and manage your file.
                   </p>
                   <div className="flex gap-4 justify-center">
                     <Link to="/login">
                       <Button variant="primary">Login</Button>
-                    </Link>
-                    <Link to="/register">
-                      <Button variant="secondary">Register</Button>
                     </Link>
                   </div>
                 </GlassCard>
@@ -506,9 +503,9 @@ export function FilesDashboardPage() {
                 </svg>
               </Button>
               {!isAuthenticated && (
-                <Link to="/register">
+                <Link to="/login">
                   <Button variant="secondary" size="lg">
-                    Create Account
+                    Sign In
                   </Button>
                 </Link>
               )}

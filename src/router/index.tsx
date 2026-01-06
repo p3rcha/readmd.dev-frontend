@@ -1,12 +1,13 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { AuthProvider } from '../features/auth/hooks/useAuth';
 import { LoginPage } from '../features/auth/pages/LoginPage';
-import { RegisterPage } from '../features/auth/pages/RegisterPage';
 import { FilesDashboardPage } from '../features/files/pages/FilesDashboardPage';
 import { DashboardPage } from '../features/files/pages/DashboardPage';
 import { FileDetailPage } from '../features/files/pages/FileDetailPage';
 import { ProtectedRoute } from '../components/common/ProtectedRoute';
 import { Layout } from '../components/common/Layout';
+import { AdminUsersPage } from '../features/admin/pages/AdminUsersPage';
+import { NotFoundPage } from '../features/common/pages/NotFoundPage';
 
 export const router = createBrowserRouter([
   {
@@ -15,10 +16,6 @@ export const router = createBrowserRouter([
       {
         path: '/login',
         element: <LoginPage />,
-      },
-      {
-        path: '/register',
-        element: <RegisterPage />,
       },
       {
         element: <Layout />,
@@ -43,6 +40,18 @@ export const router = createBrowserRouter([
                 <FileDetailPage />
               </ProtectedRoute>
             ),
+          },
+          {
+            path: '/admin/users',
+            element: (
+              <ProtectedRoute requireAdmin>
+                <AdminUsersPage />
+              </ProtectedRoute>
+            ),
+          },
+          {
+            path: '*',
+            element: <NotFoundPage />,
           },
         ],
       },
