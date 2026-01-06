@@ -1,13 +1,14 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { AuthProvider } from '../features/auth/hooks/useAuth';
 import { LoginPage } from '../features/auth/pages/LoginPage';
-import { FilesDashboardPage } from '../features/files/pages/FilesDashboardPage';
 import { DashboardPage } from '../features/files/pages/DashboardPage';
 import { FileDetailPage } from '../features/files/pages/FileDetailPage';
 import { ProtectedRoute } from '../components/common/ProtectedRoute';
 import { Layout } from '../components/common/Layout';
 import { AdminUsersPage } from '../features/admin/pages/AdminUsersPage';
 import { NotFoundPage } from '../features/common/pages/NotFoundPage';
+import { ComingSoonPage } from '../features/common/pages/ComingSoonPage';
+import { ConditionalHomePage } from './ConditionalHomePage';
 
 export const router = createBrowserRouter([
   {
@@ -18,12 +19,15 @@ export const router = createBrowserRouter([
         element: <LoginPage />,
       },
       {
+        path: '/register',
+        element: <ComingSoonPage />,
+      },
+      {
         element: <Layout />,
         children: [
           {
             path: '/',
-            element: <FilesDashboardPage />,
-            // Homepage is public, no ProtectedRoute needed
+            element: <ConditionalHomePage />,
           },
           {
             path: '/dashboard',
@@ -35,11 +39,7 @@ export const router = createBrowserRouter([
           },
           {
             path: '/files/:id',
-            element: (
-              <ProtectedRoute>
-                <FileDetailPage />
-              </ProtectedRoute>
-            ),
+            element: <FileDetailPage />,
           },
           {
             path: '/admin/users',

@@ -1,16 +1,8 @@
-import { useState, useEffect } from 'react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { Link, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { filesApi } from '../../../api/files';
-import { FileUpload } from '../components/FileUpload';
-import { useAuth } from '../../auth/hooks/useAuth';
 import { useTheme } from '../../../contexts/ThemeContext';
-import { GlassCard, Button } from '../../../components/ui';
+import { Button, GlassCard } from '../../../components/ui';
 import FloatingLines from '../../../components/common/FloatingLines';
-import { Loader } from '../../../components/common/Loader';
-
-const PENDING_FILE_KEY = 'pendingFileId';
 
 // Animation variants for staggered children
 const containerVariants = {
@@ -33,43 +25,9 @@ const itemVariants = {
   },
 } as const;
 
-export function FilesDashboardPage() {
-  const queryClient = useQueryClient();
-  const { isAuthenticated, isLoading } = useAuth();
+export function LandingPage() {
   const { theme } = useTheme();
-  const [showLoginPrompt, setShowLoginPrompt] = useState(false);
-  
-  // Only use FloatingLines for dark mode
   const isDarkMode = theme === 'dark';
-
-  // Protect this page - redirect non-authenticated users to landing page
-  if (isLoading) {
-    return <Loader />;
-  }
-
-  if (!isAuthenticated) {
-    return <Navigate to="/" replace />;
-  }
-
-  // Clear stale state on mount
-  useEffect(() => {
-    const pendingFileId = sessionStorage.getItem(PENDING_FILE_KEY);
-    if (pendingFileId && isAuthenticated) {
-      sessionStorage.removeItem(PENDING_FILE_KEY);
-    }
-  }, [isAuthenticated]);
-
-  const uploadMutation = useMutation({
-    mutationFn: ({ file, visibility }: { file: File; visibility: 'private' | 'unlisted' | 'public' }) =>
-      filesApi.uploadFile(file, visibility),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['files'] });
-    },
-  });
-
-  const handleUpload = async (file: File, visibility: 'private' | 'unlisted' | 'public') => {
-    return await uploadMutation.mutateAsync({ file, visibility });
-  };
 
   const steps = [
     {
@@ -162,7 +120,7 @@ export function FilesDashboardPage() {
               variants={itemVariants}
               className="text-lg md:text-xl text-[var(--text-tertiary)] max-w-xl mx-auto mb-10 leading-relaxed"
             >
-              Turn any markdown into a beautiful, shareable page. No account required.
+              Turn any markdown into a beautiful, shareable page. Coming soon for everyone.
             </motion.p>
 
             {/* Quick stats */}
@@ -174,13 +132,13 @@ export function FilesDashboardPage() {
                 <svg className="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
-                <span className="text-[var(--text-secondary)]">No signup needed</span>
+                <span className="text-[var(--text-secondary)]">Full GFM support</span>
               </div>
               <div className="flex items-center gap-2">
                 <svg className="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
-                <span className="text-[var(--text-secondary)]">Full GFM support</span>
+                <span className="text-[var(--text-secondary)]">Beautiful rendering</span>
               </div>
               <div className="hidden sm:flex items-center gap-2">
                 <svg className="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -195,16 +153,14 @@ export function FilesDashboardPage() {
               variants={itemVariants}
               className="flex flex-col sm:flex-row gap-3 justify-center"
             >
-              <Button 
-                variant="primary" 
-                size="lg"
-                onClick={() => document.getElementById('upload-section')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                Start uploading
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                </svg>
-              </Button>
+              <Link to="/login">
+                <Button variant="primary" size="lg">
+                  Sign In
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                  </svg>
+                </Button>
+              </Link>
             </motion.div>
           </motion.div>
         </div>
@@ -215,8 +171,8 @@ export function FilesDashboardPage() {
         </div>
       </section>
 
-      {/* Upload Section */}
-      <section id="upload-section" className="py-16 px-6">
+      {/* Coming Soon Section */}
+      <section className="py-16 px-6">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -226,11 +182,28 @@ export function FilesDashboardPage() {
           >
             <div className="flex items-center justify-center gap-3 mb-8">
               <div className="h-px w-12 bg-gradient-to-r from-transparent to-violet-500/50" />
-              <span className="text-xs font-mono uppercase tracking-wider text-[var(--text-muted)]">Upload your files</span>
+              <span className="text-xs font-mono uppercase tracking-wider text-[var(--text-muted)]">Coming Soon</span>
               <div className="h-px w-12 bg-gradient-to-l from-transparent to-violet-500/50" />
             </div>
             
-            <FileUpload onUpload={handleUpload} />
+            <GlassCard padding="lg" className="text-center border-l-4 border-l-amber-500">
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-amber-500/20">
+                  <svg className="w-4 h-4 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </span>
+                <p className="text-[var(--text-primary)] font-medium">
+                  Upload functionality is coming soon!
+                </p>
+              </div>
+              <p className="text-[var(--text-secondary)] mb-6">
+                We're currently in development. Sign in to access the full experience, or check back soon for public access.
+              </p>
+              <Link to="/login">
+                <Button variant="primary">Sign In to Get Started</Button>
+              </Link>
+            </GlassCard>
           </motion.div>
         </div>
       </section>
@@ -448,16 +421,14 @@ export function FilesDashboardPage() {
               Ready to share your markdown?
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                variant="primary" 
-                size="lg"
-                onClick={() => document.getElementById('upload-section')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                Upload Files
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
-                </svg>
-              </Button>
+              <Link to="/login">
+                <Button variant="primary" size="lg">
+                  Sign In to Get Started
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                  </svg>
+                </Button>
+              </Link>
             </div>
           </motion.div>
         </div>
