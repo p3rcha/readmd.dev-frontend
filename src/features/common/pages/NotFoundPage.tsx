@@ -30,8 +30,8 @@ export function NotFoundPage() {
   const isDarkMode = theme === 'dark';
 
   return (
-    <div className="w-full min-h-[calc(100vh-80px)] flex items-center justify-center">
-      <section className="relative py-10 md:py-16 px-6 overflow-hidden w-full">
+    <div className="w-full">
+      <section className="relative py-20 md:py-28 px-6 overflow-hidden w-full">
         {/* Light mode: Clean gradient background */}
         {!isDarkMode && (
           <div className="absolute inset-0 z-0">
