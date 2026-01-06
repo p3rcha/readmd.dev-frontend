@@ -19,7 +19,6 @@ export function AdminUsersPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
-  const [isAdmin, setIsAdmin] = useState(false);
   
   // Edit form fields
   const [editEmail, setEditEmail] = useState('');
@@ -112,7 +111,6 @@ export function AdminUsersPage() {
     setEmail('');
     setPassword('');
     setName('');
-    setIsAdmin(false);
     setError('');
   };
 

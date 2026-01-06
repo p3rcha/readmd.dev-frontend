@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { Link, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { filesApi } from '../../../api/files';
 import { FileUpload } from '../components/FileUpload';
@@ -37,8 +37,7 @@ export function FilesDashboardPage() {
   const queryClient = useQueryClient();
   const { isAuthenticated, isLoading } = useAuth();
   const { theme } = useTheme();
-  const [showLoginPrompt, setShowLoginPrompt] = useState(false);
-  
+
   // Only use FloatingLines for dark mode
   const isDarkMode = theme === 'dark';
 
